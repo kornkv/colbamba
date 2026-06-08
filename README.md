@@ -24,6 +24,34 @@ weights coverage accordingly.
 
 🚧 starting development
 
+## Build
+
+### Prerequisites
+
+On Debian/Ubuntu:
+
+```bash
+sudo apt update
+sudo apt install -y cmake g++ libboost-program-options-dev libbigwig-dev
+```
+
+### Configure and compile
+
+From the repository root:
+
+```bash
+cmake -S . -B build
+cmake --build build -j
+```
+
+The executable is generated at `build/Combamba`.
+
+### Quick check
+
+```bash
+./build/Combamba --help
+```
+
 ## License
 
 MIT

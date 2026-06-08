@@ -16,7 +16,7 @@ int main(int argc, const char* argv[])
     po::notify(vm);
 
     if (vm.count("help")) {
-        std::cout << desc << "\n";
+        std::cout << desc << '\n';
         return 1;
     }
 
@@ -27,8 +27,8 @@ int main(int argc, const char* argv[])
 
     std::string input_file = vm["input"].as<std::string>();
     std::string output_file = vm["output"].as<std::string>();
-    std::cout << "Input file: " << input_file << "\n";
-    std::cout << "Output file: " << output_file << "\n";
+    std::cout << "Input file: " << input_file << '\n';
+    std::cout << "Output file: " << output_file << '\n';
 
     return 0;
 }
