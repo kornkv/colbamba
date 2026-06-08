@@ -32,7 +32,7 @@ On Debian/Ubuntu:
 
 ```bash
 sudo apt update
-sudo apt install -y cmake g++ libboost-program-options-dev libbigwig-dev
+sudo apt install -y cmake g++ libboost-program-options-dev libbigwig-dev libhts-dev
 ```
 
 ### Configure and compile
