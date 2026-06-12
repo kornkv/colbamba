@@ -52,6 +52,32 @@ The executable is generated at `build/Combamba`.
 ./build/Combamba --help
 ```
 
+## Tests
+
+### Test dependencies
+
+On Debian/Ubuntu, install Boost Unit Test Framework:
+
+```bash
+sudo apt update
+sudo apt install -y libboost-test-dev
+```
+
+If you are setting up from scratch, this project's full dependency set is:
+
+```bash
+sudo apt update
+sudo apt install -y cmake g++ libboost-program-options-dev libboost-test-dev libbigwig-dev libhts-dev
+```
+
+### Run tests
+
+```bash
+cmake -S . -B build
+cmake --build build -j
+ctest --test-dir build --output-on-failure
+```
+
 ## License
 
 MIT
