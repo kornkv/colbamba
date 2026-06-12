@@ -37,7 +37,7 @@ Linux and macOS are both supported platforms. On macOS, you can use VS Code + De
 5. Run "Dev Containers: Reopen in Container".
 6. Build and test using the Linux commands in this README from inside the container.
 
-Inside the Dev Container, project dependencies are installed automatically via `.devcontainer/devcontainer.json`.
+Inside the Dev Container, project dependencies are installed automatically when the image is built from `.devcontainer/Dockerfile`.
 
 ### Prerequisites
 
