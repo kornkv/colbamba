@@ -26,7 +26,28 @@ weights coverage accordingly.
 
 ## Build
 
+### MacOS project setup
+
+Linux and macOS are both supported platforms. On macOS, you can use VS Code + Dev Containers (this repo already includes `.devcontainer/devcontainer.json`) to match the Linux environment used in CI.
+
+1. Install Docker Desktop and start it.
+2. Install VS Code.
+3. Install the Dev Containers extension in VS Code.
+4. Open this repository in VS Code.
+5. Run "Dev Containers: Reopen in Container".
+6. Build and test using the Linux commands in this README from inside the container.
+
+Inside the Dev Container, project dependencies are installed automatically via `.devcontainer/devcontainer.json`.
+
 ### Prerequisites
+
+On macOS (before running configure/build commands below):
+
+```bash
+brew install cmake boost libbigwig htslib
+```
+
+If you use the Dev Container workflow on macOS, first install Docker Desktop, VS Code, and the Dev Containers extension, then reopen the repository in the container. 
 
 On Debian/Ubuntu:
 
@@ -55,6 +76,8 @@ The executable is generated at `build/Combamba`.
 ## Tests
 
 ### Test dependencies
+
+If you are using the Dev Container, test dependencies are installed automatically.
 
 On Debian/Ubuntu, install Boost Unit Test Framework:
 
