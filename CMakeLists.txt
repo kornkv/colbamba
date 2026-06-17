@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(Colmbamba)
+project(colbamba)
 
 find_package(Boost REQUIRED COMPONENTS program_options unit_test_framework)
 
