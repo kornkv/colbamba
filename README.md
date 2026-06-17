@@ -65,12 +65,12 @@ cmake -S . -B build
 cmake --build build -j
 ```
 
-The executable is generated at `build/Combamba`.
+The executable is generated at `build/colbamba`.
 
 ### Quick check
 
 ```bash
-./build/Combamba --help
+./build/colbamba --help
 ```
 
 ## Tests
