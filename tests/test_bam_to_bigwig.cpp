@@ -5,7 +5,7 @@
 #include "bam_reader/bam.h"
 #include "colbamba.h"
 
-const std::string test_bam_file = "test_data/scaffold_28.bam";
+const std::string test_bam_file = std::string(TEST_DATA_DIR) + "/scaffold_28.bam";
 
 BOOST_AUTO_TEST_CASE(test_bam_to_bigwig)
 {
