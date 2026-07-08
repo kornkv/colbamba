@@ -8,7 +8,6 @@ target_link_libraries(tests PRIVATE
     bam_reader 
     colbamba)
 
-
 target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
 add_test(NAME tests COMMAND tests WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})
