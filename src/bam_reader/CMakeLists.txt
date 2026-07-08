@@ -1,4 +1,6 @@
-add_library(bam_reader bam.cpp)
+add_library(bam_reader 
+	bam.cpp
+)
 
 target_include_directories(bam_reader PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 

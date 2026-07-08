@@ -1,6 +1,9 @@
 add_executable(tests test_bam_to_bigwig.cpp)
 
-target_link_libraries(tests PRIVATE bam_reader Boost::unit_test_framework)
+target_link_libraries(tests PRIVATE 
+    Boost::unit_test_framework
+    bam_reader 
+    colbamba)
 
 target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR}/src)
 

@@ -1,6 +1,8 @@
 #include <boost/program_options.hpp>
 #include <iostream>
 
+#include "colbamba.h"
+
 namespace po = boost::program_options;
 
 int main(int argc, const char* argv[])
@@ -9,7 +11,7 @@ int main(int argc, const char* argv[])
     desc.add_options()
         ("help,h", "produce help message")
         ("input,i", po::value<std::string>(), "input BAM file")
-        ("output,o", po::value<std::string>(), "output BigWig file");
+        ("head,n", po::value<uint32_t>()->default_value(0), "number of header lines to read");
 
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, desc), vm);
@@ -26,9 +28,11 @@ int main(int argc, const char* argv[])
     }
 
     std::string input_file = vm["input"].as<std::string>();
-    std::string output_file = vm["output"].as<std::string>();
-    std::cout << "Input file: " << input_file << '\n';
-    std::cout << "Output file: " << output_file << '\n';
+    int32_t head_lines = vm["head"].as<uint32_t>();
+
+    bam_reader::Bam bam_file(input_file);
+    bam_file.open();
+    colbamba::show_records(bam_file, head_lines);
 
     return 0;
 }
