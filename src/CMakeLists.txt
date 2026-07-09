@@ -9,7 +9,7 @@ set_target_properties(colbamba PROPERTIES
 target_link_libraries(colbamba PRIVATE 
 	Boost::program_options
 	bam_reader
-	colbamba)
+	libcolbamba)
 
 if(TARGET PkgConfig::BIGWIG)
 	target_link_libraries(colbamba PRIVATE PkgConfig::BIGWIG)
@@ -23,5 +23,5 @@ else()
 endif()
 
 add_subdirectory(bam_reader)
-add_subdirectory(colbamba)
+add_subdirectory(libcolbamba)
 

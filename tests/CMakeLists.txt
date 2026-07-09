@@ -6,7 +6,7 @@ target_compile_definitions(tests PRIVATE
 target_link_libraries(tests PRIVATE 
     Boost::unit_test_framework
     bam_reader 
-    colbamba)
+    libcolbamba)
 
 target_include_directories(tests PRIVATE ${CMAKE_SOURCE_DIR}/src)
 
