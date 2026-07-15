@@ -42,28 +42,35 @@ namespace bam_reader
             throw std::runtime_error("BAM file is not open");
 
         std::vector<Record> records;
-        if (head_lines == 0)
-            head_lines = get_number_refs();
 
         records.reserve(head_lines);
 
-        for (uint32_t i = 0; i < head_lines; ++i) {
+        for (uint32_t i = 0;; ++i) {
+            if (head_lines > 0 && i >= head_lines)
+                break;
+
             bam1_t* rec = bam_init1();
             int code = sam_read1(bam_file_.get(), bam_header_.get(), rec);
-            if (code < 0) {
+            if (code == -1) {
+                bam_destroy1(rec);
+                break; // End of file reached
+            }
+
+            if (code < -1) {
                 bam_destroy1(rec);
                 throw std::runtime_error("Failed to read BAM record");
             }
 
             int32_t mtid = rec->core.mtid;
+            int32_t tid = rec->core.tid;
 
             records.emplace_back(Record{
                 .qname = std::string(bam_get_qname(rec)),
                 .flag  = rec->core.flag,
-                .rname = std::string(bam_header_->target_name[rec->core.tid]),
+                .rname = (tid >= 0) ? std::string(bam_header_->target_name[rec->core.tid]) : "*",
                 .pos   = rec->core.pos + 1, // Convert to 1-based position
                 .mapq  = rec->core.qual,
-                .cigar = get_cigar_string(rec, rec->core.n_cigar),
+                .cigar = get_cigar_string(rec),
                 .rnext = (mtid >= 0) ? std::string(sam_hdr_tid2name(bam_header_.get(), mtid)) : "*",
                 .pnext = rec->core.mpos + 1, // Convert to 1-based position
                 .tlen  = rec->core.isize

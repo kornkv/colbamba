@@ -6,7 +6,7 @@ set_target_properties(colbamba PROPERTIES
 	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )
 
-target_link_libraries(colbamba PRIVATE 
+target_link_libraries(colbamba PUBLIC
 	Boost::program_options
 	bam_reader
 	libcolbamba)

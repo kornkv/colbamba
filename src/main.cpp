@@ -11,7 +11,7 @@ int main(int argc, const char* argv[])
     desc.add_options()
         ("help,h", "produce help message")
         ("input,i", po::value<std::string>(), "input BAM file")
-        ("head,n", po::value<uint32_t>()->default_value(0), "number of header lines to read");
+        ("head,n", po::value<uint32_t>()->default_value(0), "number of records to read");
 
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, desc), vm);
@@ -22,8 +22,8 @@ int main(int argc, const char* argv[])
         return 1;
     }
 
-    if (vm.count("input") == 0 || vm.count("output" ) == 0) {
-        std::cout << "Input and output files must be specified.\n";
+    if (vm.count("input") == 0) {
+        std::cout << "Input file must be specified.\n";
         return 1;
     }
 

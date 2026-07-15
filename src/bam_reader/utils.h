@@ -10,7 +10,7 @@
 namespace bam_reader
 {
 
-    static inline std::string get_cigar_string(const bam1_t* rec, uint32_t n_cigar)
+    static inline std::string get_cigar_string(const bam1_t* rec)
     {
         uint32_t* cigar = bam_get_cigar(rec);
         std::string cigar_str;
