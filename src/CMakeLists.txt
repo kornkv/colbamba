@@ -6,6 +6,9 @@ set_target_properties(colbamba PROPERTIES
 	RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}"
 )
 
+add_subdirectory(bam_reader)
+add_subdirectory(libcolbamba)
+
 target_link_libraries(colbamba PUBLIC
 	Boost::program_options
 	bam_reader
@@ -21,7 +24,4 @@ else()
 	endif()
 	target_link_libraries(colbamba PRIVATE ${BIGWIG_LIBRARY})
 endif()
-
-add_subdirectory(bam_reader)
-add_subdirectory(libcolbamba)
 

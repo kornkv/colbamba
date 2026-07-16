@@ -1,7 +1,7 @@
 #include <boost/program_options.hpp>
 #include <iostream>
 
-#include "colbamba.h"
+#include "libcolbamba/colbamba.h"
 
 namespace po = boost::program_options;
 
@@ -11,7 +11,7 @@ int main(int argc, const char* argv[])
     desc.add_options()
         ("help,h", "produce help message")
         ("input,i", po::value<std::string>(), "input BAM file")
-        ("head,n", po::value<uint32_t>()->default_value(0), "number of records to read");
+        ("head,n", po::value<uint32_t>()->default_value(10), "number of records to read");
 
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, desc), vm);
@@ -28,7 +28,7 @@ int main(int argc, const char* argv[])
     }
 
     std::string input_file = vm["input"].as<std::string>();
-    int32_t head_lines = vm["head"].as<uint32_t>();
+    uint32_t head_lines = vm["head"].as<uint32_t>();
 
     bam_reader::Bam bam_file(input_file);
     bam_file.open();

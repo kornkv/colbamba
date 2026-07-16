@@ -19,7 +19,7 @@ namespace bam_reader
 
         void open();
         bool is_open() const;
-        std::vector<Record> read(uint32_t head_lines = 0) const;
+        std::vector<Record> read(uint32_t head_lines = 0);
 
         int32_t get_number_refs() const;
         void close();

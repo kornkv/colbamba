@@ -3,7 +3,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "bam_reader/bam.h"
-#include "colbamba.h"
+#include "libcolbamba/colbamba.h"
 
 const std::string test_bam_file = std::string(TEST_DATA_DIR) + "/scaffold_28.bam";
 
@@ -11,5 +11,7 @@ BOOST_AUTO_TEST_CASE(test_bam_to_bigwig)
 {
     bam_reader::Bam bam_file(test_bam_file);
     bam_file.open();
+    auto records = bam_file.read(5);
     colbamba::show_records(bam_file, 5);
+    BOOST_REQUIRE_EQUAL(records.size(), 5u);
 }

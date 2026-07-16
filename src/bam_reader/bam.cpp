@@ -36,7 +36,7 @@ namespace bam_reader
         return bam_file_ != nullptr && bam_header_ != nullptr;
     }
 
-    std::vector<Record> Bam::read(uint32_t head_lines) const
+    std::vector<Record> Bam::read(uint32_t head_lines)
     {
         if (!bam_file_)
             throw std::runtime_error("BAM file is not open");
