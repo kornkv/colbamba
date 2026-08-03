@@ -9,7 +9,6 @@
 
 namespace bam_reader
 {
-
     static inline std::string get_cigar_string(const bam1_t* rec)
     {
         uint32_t* cigar = bam_get_cigar(rec);
@@ -21,7 +20,7 @@ namespace bam_reader
 
             cigar_str += std::to_string(op_len) + static_cast<char>(opchr);
         }
-        return cigar_str;
+        return cigar_str.empty() ? "*" : cigar_str;
     }
 
     static inline std::string record_to_string(const Record& rec)
@@ -35,5 +34,13 @@ namespace bam_reader
                rec.rnext + "\t" +
                std::to_string(rec.pnext) + "\t" +
                std::to_string(rec.tlen);
+    }
+
+    static inline void clean_records(std::vector<Record>& records)
+    {
+        for (auto& rec : records)
+            bam_destroy1(reinterpret_cast<bam1_t*>(&rec));
+
+        records.clear();
     }
 }
