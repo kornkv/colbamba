@@ -2,6 +2,9 @@
 
 #include <string>
 #include <memory>
+#include <vector>
+
+#include "record.h"
 
 class htsFile;
 class sam_hdr_t;
@@ -15,9 +18,15 @@ namespace bam_reader
         ~Bam();
 
         void open();
+        bool is_open() const;
+        std::vector<Record> read(uint32_t head_lines = 0);
+        std::vector<Record> read_all();
+
+        int32_t get_number_refs() const;
         void close();
 
     private:
+        Record read_record();
         std::string file_path_;
         std::unique_ptr<htsFile> bam_file_;
         std::unique_ptr<sam_hdr_t> bam_header_;
